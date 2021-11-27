@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3> Xin chào, {{customerName}}</h3>
+    <h3> Đơn hàng của quý khách có giá: {{money}}</h3>
+    <form action="BankInputPage.html" method="POST">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <br>
+        <br>
+        <!--<input type="hidden" name="next" value="/userlog"/>-->
+        <input type="submit" value="Tiếp theo"/>
+    <br>
+    </form>
+</body>
+</html>
