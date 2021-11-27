@@ -15,13 +15,15 @@ def choosePaymentMethod(request):
         "customerName": "Tuan Vu"
     }
 
-    emptyForm = choosePaymentMethodForms()
-    context['form'] = emptyForm
+    form = choosePaymentMethodForms()
+    context['form'] = form
     if request.method == 'POST':
+        print("a")
         form = choosePaymentMethodForms(request.POST)
         if form.is_valid():
-            print(" form.pays() == ", form.pays())
+            print("a")
             if form.pays() == 'bank' :
+                print("!11")
                 return render(request, 'BankInputPage.html', context)
             else:
                 return render(request, 'InputAddressPage.html', context)
@@ -29,5 +31,9 @@ def choosePaymentMethod(request):
             print("Form invalid")
 
     return render(request, 'choosePayment.html', context)
+def bankInputPage(request):
+    return render(request,'BankInputPage.html')
+def InputAddressPage(request):
+    return render(request, 'InputAddressPage.htm')
 
 

@@ -7,7 +7,7 @@
 <body>
     <h3> Xin chào, {{customerName}}</h3>
     <h3> Đơn hàng của quý khách có giá: {{money}}</h3>
-    <form action="BankInputPage.html" method="POST">
+    <form action="." method="POST">
         {% csrf_token %}
         <table>
             {{form.as_table}}
