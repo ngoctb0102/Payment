@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import choosePaymentMethodForms
+from .forms import choosePaymentMethodForms,payInfoForm
 
 def hello(request):
     context = {
@@ -18,15 +18,13 @@ def choosePaymentMethod(request):
     form = choosePaymentMethodForms()
     context['form'] = form
     if request.method == 'POST':
-        print("a")
         form = choosePaymentMethodForms(request.POST)
         if form.is_valid():
-            print("a")
             if form.pays() == 'bank' :
-                print("!11")
                 return render(request, 'BankInputPage.html', context)
             else:
-                return render(request, 'InputAddressPage.html', context)
+                # return render(request, 'InputAddressPage.html')
+                return redirect("InputAddressPage")
         else:
             print("Form invalid")
 
@@ -34,6 +32,15 @@ def choosePaymentMethod(request):
 def bankInputPage(request):
     return render(request,'BankInputPage.html')
 def InputAddressPage(request):
-    return render(request, 'InputAddressPage.htm')
+    form = payInfoForm()
+    context={
+        'form' : form
+    }
+    if request.method == 'POST':
+        form = payInfoForm(request.POST)
+        if form.is_valid():
+            return render(request, 'result.html',{'name':form.cleaned_data['name'],'phone':form.cleaned_data['phone'],'city':form.cleaned_data['city'],'add':form.cleaned_data['add']})
+    return render(request, 'InputAddressPage.html',context)
+
 
 

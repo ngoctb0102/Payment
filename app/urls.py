@@ -5,5 +5,5 @@ urlpatterns = [
     path('',views.hello),
     path('choosePayment/',views.choosePaymentMethod),
     path('bankInputPage/',views.bankInputPage),
-    path('InputAddressPage/',views.InputAddressPage)
+    path('InputAddressPage/',views.InputAddressPage,name = "InputAddressPage")
 ]
